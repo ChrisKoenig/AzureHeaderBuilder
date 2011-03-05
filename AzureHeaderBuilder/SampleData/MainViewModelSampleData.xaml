@@ -1,0 +1,5 @@
+﻿<AzureHeaderBuilder_ViewModels:MainViewModel xmlns:AzureHeaderBuilder_ViewModels="clr-namespace:AzureHeaderBuilder.ViewModels" xmlns:GalaSoft_MvvmLight_Command="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.WPF4" AccountName="Aliquam" Date="03/04/2011 18:18:50" Header="Aenean duis nam mauris nunc" IsInDesignMode="True" IsInDesignModeStatic="False" SharedKey="Suspendisse sollicitudin lobortis vestibulum pellentesque fermentum condimentum scelerisque est fringilla eget commodo auctor congue elit consectetuer" TableName="Accumsan nullam aptent auctor" FullURL="http://www.adatum.com/">
+	<AzureHeaderBuilder_ViewModels:MainViewModel.BuildHeaderCommand>
+		<GalaSoft_MvvmLight_Command:RelayCommand/>
+	</AzureHeaderBuilder_ViewModels:MainViewModel.BuildHeaderCommand>
+</AzureHeaderBuilder_ViewModels:MainViewModel>
