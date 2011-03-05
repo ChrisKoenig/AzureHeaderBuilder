@@ -23,5 +23,15 @@ namespace AzureHeaderBuilder
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            tabControl1.SelectedIndex = 2;
+        }
     }
 }
