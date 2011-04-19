@@ -44,7 +44,7 @@ namespace AzureHeaderBuilder.ViewModels
             httpHeaders.Add("x-ms-date", dateInRfc1123Format);
             httpHeaders.Add("x-ms-version", "2009-09-19");
             httpHeaders.Add("Authorization", authorizationHeader);
-            httpHeaders.Add("Accept-Charset", "UTF-8");
+            //httpHeaders.Add("Accept-Charset", "UTF-8");
             httpHeaders.Add("Accept", "application/atom+xml, application/xml");
             httpHeaders.Add("DataServiceVersion", "1.0;NetFx");
             httpHeaders.Add("MaxDataServiceVersion", "1.0;NetFx");
@@ -102,16 +102,19 @@ namespace AzureHeaderBuilder.ViewModels
             request.Headers["DataServiceVersion"] = "1.0;NetFx";
             request.Headers["MaxDataServiceVersion"] = "1.0;NetFx";
 
-            var iar = request.BeginGetResponse((cb) =>
+            var iar = request.BeginGetResponse(new AsyncCallback(RequestComplete), request);
+        }
+
+        private void RequestComplete(IAsyncResult iar)
+        {
+            var request = iar.AsyncState as HttpWebRequest;
+            var response = request.EndGetResponse(iar);
+            Stream dataStream = response.GetResponseStream();
+            using (StreamReader reader = new StreamReader(dataStream))
             {
-                var response = request.EndGetResponse(cb);
-                Stream dataStream = response.GetResponseStream();
-                using (StreamReader reader = new StreamReader(dataStream))
-                {
-                    string responseFromServer = reader.ReadToEnd();
-                    DispatcherHelper.CheckBeginInvokeOnUI(() => this.QueryResults = responseFromServer);
-                }
-            }, null);
+                string responseFromServer = reader.ReadToEnd();
+                DispatcherHelper.CheckBeginInvokeOnUI(() => this.QueryResults = responseFromServer);
+            }
         }
 
         #region AccountName property
